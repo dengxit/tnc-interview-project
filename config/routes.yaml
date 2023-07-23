@@ -1,3 +1,5 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+api:
+    resource: 'routes/api.yaml'

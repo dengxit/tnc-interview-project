@@ -1,0 +1,8 @@
+get_users:
+  path: /api/users
+  controller: App\Controller\UserController::index
+  methods: 'GET'
+show_user:
+  path: /api/users/{id}
+  controller: App\Controller\UserController::show
+  methods: 'GET'
