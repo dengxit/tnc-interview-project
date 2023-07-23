@@ -1,0 +1,21 @@
+<?php
+
+$finder = Symfony\Component\Finder\Finder::create()
+    ->in(__DIR__)
+    ->exclude('var')
+    ->exclude('vendor')
+    ->name('*.php')
+    ->notName('*.tpl.php')
+    ->ignoreDotFiles(true)
+    ->ignoreVCS(true);
+
+$config = new PhpCsFixer\Config();
+return $config
+    ->setFinder($finder)
+    ->setRiskyAllowed(true)
+    ->setRules([
+        '@PSR12' => true,
+        'ordered_imports' => true,
+        'phpdoc_summary' => true,
+        'no_unused_imports' => true,
+    ]);

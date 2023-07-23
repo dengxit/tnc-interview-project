@@ -1,0 +1,5 @@
+get_users:
+  path: /api/users
+  controller: App\Controller\UserController::index
+  methods: 'GET'
+
