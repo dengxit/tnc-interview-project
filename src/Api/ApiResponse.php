@@ -3,6 +3,7 @@
 namespace App\Api;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+
 trait ApiResponse
 {
     public static function success(mixed $data = null, int $statusCode = 200): JsonResponse

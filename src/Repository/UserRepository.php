@@ -27,7 +27,7 @@ class UserRepository extends ServiceEntityRepository
         $data = $queryParams->getData();
         $queryBuilder = $this->createQueryBuilder('u');
         if (!empty($data['user_type'])) {
-            $queryBuilder->andWhere($queryBuilder->expr()->in('u.user_type',':user_type'))
+            $queryBuilder->andWhere($queryBuilder->expr()->in('u.user_type', ':user_type'))
                 ->setParameter('user_type', $data['user_type']);
         }
 

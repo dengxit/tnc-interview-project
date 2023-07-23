@@ -2,7 +2,6 @@
 
 namespace App\Tests\Controller;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
@@ -21,7 +20,7 @@ class UserControllerTest extends WebTestCase
         // Check that the response content is as expected
         $result = json_decode($client->getResponse()->getContent());
         $this->assertTrue($result->success);
-        $this->assertEquals(500,$result->data->totalItems);
+        $this->assertEquals(500, $result->data->totalItems);
     }
 
     public function testIndexWithParam()
@@ -44,7 +43,7 @@ class UserControllerTest extends WebTestCase
         // Check that the response content is as expected
         $result = json_decode($client->getResponse()->getContent());
         $this->assertTrue($result->success);
-        $this->assertEquals(8,$result->data->totalItems);
+        $this->assertEquals(8, $result->data->totalItems);
     }
 
     public function testIndexWithErrorUserType()
@@ -63,7 +62,5 @@ class UserControllerTest extends WebTestCase
         // Check that the response content is as expected
         $expectedResponse = '{"success":false,"error":{"message":"Invalid parameters","details":{"[user_type][2]":"The value you selected is not a valid choice."}}}';
         $this->assertJsonStringEqualsJsonString($expectedResponse, $client->getResponse()->getContent());
-
     }
-
 }

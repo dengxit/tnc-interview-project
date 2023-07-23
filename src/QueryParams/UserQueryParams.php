@@ -10,10 +10,12 @@ class UserQueryParams implements \Iterator, \ArrayAccess
     {
         $this->data = $data;
     }
+
     public function getData()
     {
         return $this->data;
     }
+
     public function getIterator()
     {
         return new \ArrayIterator($this->data);
@@ -31,7 +33,7 @@ class UserQueryParams implements \Iterator, \ArrayAccess
 
     public function offsetSet($offset, $value)
     {
-        if ($offset === null) {
+        if (null === $offset) {
             $this->data[] = $value;
         } else {
             $this->data[$offset] = $value;
@@ -42,7 +44,6 @@ class UserQueryParams implements \Iterator, \ArrayAccess
     {
         unset($this->data[$offset]);
     }
-
 
     public function current()
     {

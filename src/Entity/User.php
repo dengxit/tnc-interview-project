@@ -10,9 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: '`test_users`')]
 class User
 {
-    const IS_MEMBER_ARRAY = ['0', '1'];
-    const IS_ACTIVE_ARRAY = ['0', '1'];
-    const USER_TYPE_ARRAY = ['1', '2', '3'];
+    public const IS_MEMBER_ARRAY = ['0', '1'];
+    public const IS_ACTIVE_ARRAY = ['0', '1'];
+    public const USER_TYPE_ARRAY = ['1', '2', '3'];
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

@@ -23,7 +23,6 @@ final class Version20230723130133 extends AbstractMigration
         $this->addSql('CREATE INDEX email ON `test_users` (email)');
         $this->addSql('CREATE INDEX username ON `test_users` (username)');
         $this->addSql('CREATE INDEX last_login_at ON `test_users` (last_login_at)');
-
     }
 
     public function down(Schema $schema): void

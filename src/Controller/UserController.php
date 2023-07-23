@@ -7,14 +7,15 @@ use App\Entity\User;
 use App\QueryParams\UserQueryParams;
 use App\Validator\UserQueryParamsValidator;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends AbstractController
 {
     use ApiResponse;
+
     public function index(EntityManagerInterface $entityManager, Request $request): JsonResponse
     {
         $page = $request->query->getInt('page', 1);
@@ -26,16 +27,16 @@ class UserController extends AbstractController
             'last_login_end_at' => $request->query->get('last_login_end_at'),
             'user_type' => array_filter(explode(',', $request->query->get('user_type'))),
         ]);
-        //Use a validator to validate parameters
+        // Use a validator to validate parameters
         $validator = new UserQueryParamsValidator();
         $errors = $validator->validate($queryParams);
 
-        //If there is a parameter validation error, return an error message
+        // If there is a parameter validation error, return an error message
         if (!empty($errors)) {
             return ApiResponse::error('Invalid parameters', 400, $errors);
         }
         $queryBuilder = $entityManager->getRepository(User::class)->findByQueryParams($queryParams);
-        //Use Doctrine's Paginator to paginate query results
+        // Use Doctrine's Paginator to paginate query results
         $doctrinePaginator = new DoctrinePaginator($queryBuilder);
         $doctrinePaginator->getQuery()
             ->setFirstResult(($page - 1) * $pageSize)
@@ -65,5 +66,4 @@ class UserController extends AbstractController
 
         return ApiResponse::success($data);
     }
-
 }
